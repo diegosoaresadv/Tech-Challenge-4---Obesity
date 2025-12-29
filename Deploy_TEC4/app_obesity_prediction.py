@@ -2,8 +2,13 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
-import plotly.graph_objects as go
-import plotly.express as px
+from pathlib import Path
+try:
+    import plotly.graph_objects as go
+    import plotly.express as px
+except Exception as e:
+    st.error("A biblioteca 'plotly' não está instalada ou ocorreu um erro ao importá-la. Instale com: `pip install plotly` ou rode `pip install -r Deploy_TEC4/requirements.txt`.")
+    st.stop()
 
 # Configuração da página
 st.set_page_config(
@@ -43,13 +48,25 @@ st.markdown('<p class="sub-header">Modelo de Machine Learning para auxílio ao d
 @st.cache_resource
 def load_model_components():
     try:
-        model = joblib.load('random_forest_obesity_model.joblib')
-        scaler = joblib.load('scaler_obesity.joblib')
-        label_encoder = joblib.load('label_encoder_obesity.joblib')
+        base_dir = Path(__file__).resolve().parent
+        model_path = base_dir / 'random_forest_obesity_model.joblib'
+        scaler_path = base_dir / 'scaler_obesity.joblib'
+        label_encoder_path = base_dir / 'label_encoder_obesity.joblib'
+        columns_path = base_dir / 'colunas_modelo.csv'
+
+        # Verificar arquivos necessários
+        missing = [p.name for p in (model_path, scaler_path, label_encoder_path, columns_path) if not p.exists()]
+        if missing:
+            raise FileNotFoundError(f"Arquivos ausentes: {', '.join(missing)} no diretório {str(base_dir)}. Verifique se os arquivos foram copiados para a pasta do app.")
+
+        model = joblib.load(model_path)
+        scaler = joblib.load(scaler_path)
+        label_encoder = joblib.load(label_encoder_path)
         
         # Carregar as colunas do modelo
-        colunas_df = pd.read_csv('colunas_modelo.csv')
-        model_columns = colunas_df['0'].tolist()
+        colunas_df = pd.read_csv(columns_path)
+        # Garantir que pegamos a primeira coluna como lista de nomes (compatível com CSVs simples)
+        model_columns = colunas_df.iloc[:, 0].astype(str).tolist()
         
         return model, scaler, label_encoder, model_columns
     except Exception as e:
