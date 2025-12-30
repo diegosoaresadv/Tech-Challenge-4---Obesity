@@ -445,7 +445,7 @@ else:
         2. Clique no botão "Realizar Predição"
         3. Analise os resultados e probabilidades apresentados
         
-        **Importante:** Este é um sistema de apoio à decisão médica e não substitui a avaliação profissional.
+        **Importante:** Este é um sistema criado com propósitos acadmêmicos por alunos da FIAP, não substitui a avaliação profissional.
         """)
     
     with st.expander("📊 Estatísticas do Modelo"):
@@ -456,12 +456,12 @@ else:
         - **Número de Estimadores:** 100 árvores
         - **Features utilizadas:** 24 variáveis
         - **Pré-processamento:** 
-          - Normalização com StandardScaler
-          - Label Encoding para variáveis categóricas
-          - One-Hot Encoding para variáveis nominais
+          - Patronização com StandardScaler
+          - Label Encoding para variáveis categóricas ordinais
+          - One-Hot Encoding para variáveis categóricas nominais
         
-        O modelo foi treinado com dados de pacientes e utiliza técnicas de ensemble learning 
-        para garantir predições mais robustas e confiáveis.
+        O modelo foi treinado com dados da base Obesity.csv, disponibilizada pela FIAP no Tech Challenge 4, e utiliza técnicas de ensemble learning 
+        para garantir predições.
         """)
 
 # Footer
