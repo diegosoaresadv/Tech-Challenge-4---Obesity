@@ -20,7 +20,10 @@ import os
 
 # Carregar o dataset
 
-df = pd.read_csv('.../Obesity_Tratado.csv')
+base_dir = os.path.dirname(__file__)                 # pasta do script
+csv_path = os.path.join(base_dir, 'Obesity_Tratado.csv')
+print('Lendo:', csv_path, '-> existe?', os.path.exists(csv_path))
+df = pd.read_csv(csv_path)
 
 # Criar IMC (Índice de Massa Corporal) como nova variável
 df['IMC'] = df['Weight'] / (df['Height'] ** 2)
