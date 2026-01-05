@@ -20,7 +20,7 @@ import os
 
 # Carregar o dataset
 
-df = pd.read_csv('../Obesity_Tratado.csv')
+df = pd.read_csv('.../Obesity_Tratado.csv')
 
 # Criar IMC (Índice de Massa Corporal) como nova variável
 df['IMC'] = df['Weight'] / (df['Height'] ** 2)
