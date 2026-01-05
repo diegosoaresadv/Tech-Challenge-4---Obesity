@@ -17,7 +17,7 @@ import dash_bootstrap_components as dbc
 # ============================================================================
 
 # Carregar o dataset
-df = pd.read_csv('data/Obesity_Tratado.csv')
+df = pd.read_csv('Dashboard/Obesity_Tratado.csv')
 
 # Criar IMC (Índice de Massa Corporal) como nova variável
 df['IMC'] = df['Weight'] / (df['Height'] ** 2)
