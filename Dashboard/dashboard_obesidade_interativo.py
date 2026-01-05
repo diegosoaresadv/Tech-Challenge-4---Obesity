@@ -11,13 +11,19 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from dash import Dash, html, dcc, Input, Output, dash_table
 import dash_bootstrap_components as dbc
+import os
+
 
 # ============================================================================
 # CARREGAMENTO E PREPARAÇÃO DOS DADOS
 # ============================================================================
 
 # Carregar o dataset
-df = pd.read_csv('Dashboard/Obesity_Tratado.csv')
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_PATH = os.path.join(BASE_DIR, 'Obesity_Tratado.csv')
+
+df = pd.read_csv(DATA_PATH)
 
 # Criar IMC (Índice de Massa Corporal) como nova variável
 df['IMC'] = df['Weight'] / (df['Height'] ** 2)
