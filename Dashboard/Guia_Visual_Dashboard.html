@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Rápido - Dashboard de Obesidade</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2C3E50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2C3E50 0%, #3498DB 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            color: #2C3E50;
+            border-left: 5px solid #3498DB;
+            padding-left: 15px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498DB;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .card h3 {
+            color: #3498DB;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card h3::before {
+            content: "▸";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        .steps {
+            background: white;
+            border: 2px solid #3498DB;
+            border-radius: 10px;
+            padding: 25px;
+        }
+        
+        .step {
+            display: flex;
+            align-items: start;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .step-number {
+            background: #3498DB;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            flex-shrink: 0;
+            margin-right: 20px;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content h4 {
+            color: #2C3E50;
+            margin-bottom: 5px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .feature-card h3 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        
+        .feature-card h3::before {
+            content: none;
+        }
+        
+        .feature-card p {
+            font-size: 1.1em;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .tip {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .warning {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        code {
+            background: #2C3E50;
+            color: #ecf0f1;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .code-block {
+            background: #2C3E50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        ul {
+            list-style-position: inside;
+            margin-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            background: #2C3E50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Guia Rápido do Dashboard</h1>
+            <p>Sistema de Análise de Dados de Obesidade</p>
+        </header>
+        
+        <div class="content">
+            <!-- Início Rápido -->
+            <div class="section">
+                <h2>🚀 Início Rápido</h2>
+                
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Instale as Dependências</h4>
+                            <p>Abra o terminal/prompt e execute:</p>
+                            <div class="code-block">pip install -r requirements.txt</div>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Prepare os Dados</h4>
+                            <p>Certifique-se de que o arquivo <code>Obesity_Tratado.csv</code> está na mesma pasta do script Python.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Execute o Dashboard</h4>
+                            <p>No terminal, execute:</p>
+                            <div class="code-block">python dashboard_obesidade_interativo.py</div>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Acesse no Navegador</h4>
+                            <p>Abra seu navegador e acesse:</p>
+                            <div class="code-block">http://127.0.0.1:8050/</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Funcionalidades -->
+            <div class="section">
+                <h2>⚡ Principais Funcionalidades</h2>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>🔍</h3>
+                        <p><strong>Filtros Dinâmicos</strong></p>
+                        <p>Segmente dados por sexo, idade, obesidade e histórico familiar</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>📊</h3>
+                        <p><strong>Visualizações Interativas</strong></p>
+                        <p>Gráficos que respondem em tempo real aos seus filtros</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>🔄</h3>
+                        <p><strong>Análise de Correlações</strong></p>
+                        <p>Identifique relações entre variáveis automaticamente</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>📈</h3>
+                        <p><strong>Estatísticas em Tempo Real</strong></p>
+                        <p>Cards que atualizam conforme você filtra os dados</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>📋</h3>
+                        <p><strong>Exportação de Dados</strong></p>
+                        <p>Exporte tabelas filtradas para Excel</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>🎨</h3>
+                        <p><strong>Interface Profissional</strong></p>
+                        <p>Design limpo e fácil de usar</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Como Usar -->
+            <div class="section">
+                <h2>📖 Como Usar o Dashboard</h2>
+                
+                <div class="card">
+                    <h3>Filtros no Painel Esquerdo</h3>
+                    <p>Use os dropdowns para filtrar os dados:</p>
+                    <ul>
+                        <li><strong>Sexo:</strong> Selecione Masculino, Feminino ou Todos</li>
+                        <li><strong>Faixa Etária:</strong> Filtre por grupos de idade</li>
+                        <li><strong>Nível de Obesidade:</strong> Foque em categorias específicas</li>
+                        <li><strong>Histórico Familiar:</strong> Filtre por presença de histórico</li>
+                    </ul>
+                    <div class="tip">
+                        <strong>💡 Dica:</strong> Combine múltiplos filtros para análises mais específicas!
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Cards de Estatísticas</h3>
+                    <p>No topo da página, 4 cards mostram:</p>
+                    <ul>
+                        <li><strong>Total de Pacientes:</strong> Quantos registros correspondem aos filtros</li>
+                        <li><strong>IMC Médio:</strong> Média do Índice de Massa Corporal</li>
+                        <li><strong>Idade Média:</strong> Média etária dos pacientes filtrados</li>
+                        <li><strong>% Obesidade:</strong> Percentual de pacientes com obesidade (tipos I, II, III)</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Abas de Visualização</h3>
+                    <p><strong>📊 Distribuições:</strong> Veja como os dados estão distribuídos</p>
+                    <ul>
+                        <li>Gráfico de barras por nível de obesidade</li>
+                        <li>Boxplot de IMC por sexo</li>
+                        <li>Histograma de idades</li>
+                        <li>Scatter plot de peso vs altura</li>
+                    </ul>
+                    
+                    <p><strong>🔄 Correlações:</strong> Identifique relações entre variáveis</p>
+                    <ul>
+                        <li>Matriz de correlação (heatmap)</li>
+                        <li>IMC vs atividade física</li>
+                        <li>IMC por variáveis categóricas</li>
+                        <li>Consumo de água vs IMC</li>
+                    </ul>
+                    
+                    <p><strong>📈 Comparações:</strong> Compare grupos e categorias</p>
+                    <ul>
+                        <li>Consumo de vegetais por obesidade</li>
+                        <li>Atividade física por categoria</li>
+                        <li>Meio de transporte vs obesidade</li>
+                        <li>Tecnologia vs IMC</li>
+                    </ul>
+                    
+                    <p><strong>📋 Tabela:</strong> Dados detalhados e exportáveis</p>
+                    <ul>
+                        <li>Visualize todos os dados filtrados</li>
+                        <li>Ordene por qualquer coluna</li>
+                        <li>Filtre valores específicos</li>
+                        <li>Exporte para Excel</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Interatividade -->
+            <div class="section">
+                <h2>🖱️ Recursos Interativos dos Gráficos</h2>
+                
+                <div class="card">
+                    <h3>Ações Disponíveis</h3>
+                    <ul>
+                        <li><strong>Hover (passar o mouse):</strong> Veja detalhes de cada ponto/barra</li>
+                        <li><strong>Clicar e arrastar:</strong> Faça zoom em uma região específica</li>
+                        <li><strong>Duplo clique:</strong> Resete o zoom</li>
+                        <li><strong>Clicar na legenda:</strong> Oculte/mostre categorias</li>
+                        <li><strong>Botões superiores:</strong> Zoom in/out, pan, reset</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Insights -->
+            <div class="section">
+                <h2>💡 Insights que Você Pode Obter</h2>
+                
+                <div class="card">
+                    <h3>Análises Demográficas</h3>
+                    <p>Identifique padrões de obesidade por:</p>
+                    <ul>
+                        <li>Distribuição etária</li>
+                        <li>Diferenças entre sexos</li>
+                        <li>Impacto do histórico familiar</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Fatores de Risco</h3>
+                    <p>Descubra quais variáveis estão mais associadas à obesidade:</p>
+                    <ul>
+                        <li>Frequência de atividade física</li>
+                        <li>Hábitos alimentares</li>
+                        <li>Consumo de água</li>
+                        <li>Estilo de vida (transporte, tecnologia)</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Correlações Importantes</h3>
+                    <p>Explore relações entre:</p>
+                    <ul>
+                        <li>IMC e atividade física</li>
+                        <li>Idade e peso</li>
+                        <li>Consumo de vegetais e obesidade</li>
+                        <li>Tempo de tecnologia e IMC</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Dicas -->
+            <div class="section">
+                <h2>🎯 Dicas de Uso</h2>
+                
+                <div class="highlight">
+                    <strong>⚡ Para análises rápidas:</strong> Use os filtros e observe os cards de estatísticas. Eles fornecem um resumo instantâneo.
+                </div>
+                
+                <div class="tip">
+                    <strong>💡 Para análises profundas:</strong> Combine filtros e navegue por todas as abas. Compare diferentes segmentos de pacientes.
+                </div>
+                
+                <div class="warning">
+                    <strong>⚠️ Atenção:</strong> Sempre considere o tamanho da amostra filtrada. Grupos muito pequenos podem não ser estatisticamente significativos.
+                </div>
+            </div>
+            
+            <!-- Solução de Problemas -->
+            <div class="section">
+                <h2>🔧 Solução de Problemas</h2>
+                
+                <div class="card">
+                    <h3>Dashboard não inicia</h3>
+                    <p>Verifique:</p>
+                    <ul>
+                        <li>Se todas as bibliotecas foram instaladas corretamente</li>
+                        <li>Se o arquivo CSV está no mesmo diretório</li>
+                        <li>Se a porta 8050 está disponível</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Gráficos não aparecem</h3>
+                    <p>Soluções:</p>
+                    <ul>
+                        <li>Atualize a página (F5)</li>
+                        <li>Limpe o cache do navegador</li>
+                        <li>Tente outro navegador (Chrome recomendado)</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Erro ao exportar dados</h3>
+                    <p>Certifique-se de que:</p>
+                    <ul>
+                        <li>Há dados filtrados na tabela</li>
+                        <li>Você tem permissão para salvar arquivos no seu computador</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Dashboard de Análise de Obesidade - Desenvolvido para Equipe Médica</p>
+            <p>© 2026 - Versão 1.0</p>
+        </footer>
+    </div>
+</body>
+</html>
